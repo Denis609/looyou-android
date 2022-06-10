@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">looyou-android</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Войти</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="login_via">Войти через</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="next">Продолжить</string>
+
+    <string name="polici">Нажимая «Продолжить», вы принимаете пользовательское соглашение и политику конфиденциальности</string>
+</resources>
