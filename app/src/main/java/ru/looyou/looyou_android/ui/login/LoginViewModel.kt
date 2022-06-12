@@ -1,13 +1,13 @@
 package ru.looyou.looyou_android.ui.login
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ktor.client.statement.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.looyou.looyou_android.api.oauth.OAuthService
+import ru.looyou.looyou_android.base.BaseViewModel
 import ru.looyou.looyou_android.base.SharedPrefs
 import java.net.URI
 import javax.inject.Inject
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val apiService: OAuthService,
     private val sharedPrefs: SharedPrefs
-) : ViewModel() {
+) : BaseViewModel() {
 
     val success = MutableLiveData<Boolean>()
 
@@ -24,7 +24,7 @@ class LoginViewModel @Inject constructor(
         login: String,
         password: String
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO + errorHandler) {
             apiService.signIn(login, password)
             val response: HttpResponse = apiService.getCode()
             val code = parse(URI(response.headers["Location"]))
