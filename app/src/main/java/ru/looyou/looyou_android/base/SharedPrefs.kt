@@ -5,13 +5,13 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.qualifiers.ApplicationContext
-import ru.looyou.looyou_android.api.oauth.TokenDto
+import ru.looyou.looyou_android.api.dto.TokenDto
 import javax.inject.Inject
 
 class SharedPrefs @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val name: String = "MAIN",
-    private val gson: Gson = Jsons.create("dd.MM.yyyy")
+    name: String = "MAIN",
+    private val gson: Gson
 ) {
     companion object {
         private const val CLIENT = "CLIENT"
@@ -26,7 +26,6 @@ class SharedPrefs @Inject constructor(
     fun logout() {
         delete(CLIENT)
     }
-
 
     fun <T> save(key: String, data: T) = prefs.edit().putString(key, gson.toJson(data)).apply()
 

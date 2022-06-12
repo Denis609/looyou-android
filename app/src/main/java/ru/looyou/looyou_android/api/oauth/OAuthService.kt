@@ -11,8 +11,9 @@ import io.ktor.client.statement.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import ru.looyou.looyou_android.Const
+import ru.looyou.looyou_android.api.dto.TokenDto
 
-interface ApiService {
+interface OAuthService {
 
     suspend fun signIn(login: String, password: String): HttpResponse
 
@@ -49,7 +50,7 @@ interface ApiService {
                 install(HttpCookies)
                 followRedirects = false
                 defaultRequest {
-                    url(Const.baseUrl)
+                    url(Const.baseOAuthUrl)
                 }
             }
     }

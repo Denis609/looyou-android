@@ -7,15 +7,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ktor.client.statement.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.looyou.looyou_android.api.oauth.ApiService
-import ru.looyou.looyou_android.api.oauth.TokenDto
+import ru.looyou.looyou_android.api.oauth.OAuthService
 import ru.looyou.looyou_android.base.SharedPrefs
 import java.net.URI
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val apiService: ApiService,
+    private val apiService: OAuthService,
     private val sharedPrefs: SharedPrefs
 ) : ViewModel() {
 

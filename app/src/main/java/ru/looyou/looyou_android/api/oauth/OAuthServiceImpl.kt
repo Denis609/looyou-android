@@ -7,11 +7,12 @@ import io.ktor.client.request.forms.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import ru.looyou.looyou_android.Const
+import ru.looyou.looyou_android.api.dto.TokenDto
 import javax.inject.Inject
 
-class ApiServiceImpl @Inject constructor(
+class OAuthServiceImpl @Inject constructor(
     private val client: HttpClient
-) : ApiService {
+) : OAuthService {
     override suspend fun signIn(
         login: String,
         password: String

@@ -1,4 +1,4 @@
-package ru.looyou.looyou_android.api.oauth
+package ru.looyou.looyou_android.api.dto
 
 import kotlinx.serialization.Serializable
 

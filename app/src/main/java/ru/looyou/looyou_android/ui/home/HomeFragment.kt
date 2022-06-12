@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.looyou.looyou_android.R
+import ru.looyou.looyou_android.api.extension.onUnAuthorize
 import ru.looyou.looyou_android.databinding.HomeFragmentBinding
 
 @AndroidEntryPoint
@@ -30,11 +31,12 @@ class HomeFragment : Fragment() {
 
         viewModel.getToken()
         viewModel.token.observe(viewLifecycleOwner) {
-            binding.token.text = "Access token = " + it
+            binding.token.text = "Access token = $it"
         }
 
         binding.logout.setOnClickListener {
             viewModel.logout()
+            onUnAuthorize()
         }
     }
 }

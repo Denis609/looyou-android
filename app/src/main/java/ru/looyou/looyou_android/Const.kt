@@ -1,11 +1,12 @@
 package ru.looyou.looyou_android
 
+import androidx.viewbinding.BuildConfig
+
 object Const {
 
-    private const val BASE_URL_WORK = "http://192.168.1.100:8000/"
-    private const val BASE_URL_TEST = "http://192.168.1.100:8000/"
-
-    val baseUrl = if (BuildConfig.DEBUG) BASE_URL_TEST else BASE_URL_WORK
+    private const val BASE_OAUTH_URL_WORK = "https://looyou-auth.herokuapp.com/" // "http://192.168.1.100:8000/"
+    private const val BASE_OAUTH_URL_TEST = "https://looyou-auth.herokuapp.com/" // "http://192.168.1.100:8000/"
+    val baseOAuthUrl = if (BuildConfig.DEBUG) BASE_OAUTH_URL_TEST else BASE_OAUTH_URL_WORK
 
     const val CLIENT_ID = "72935774ef0f2ecf3c9514bba3e16375f766fac060acc63790e1e21a98d0cb12"
     const val SCOPE = "mobileapp"

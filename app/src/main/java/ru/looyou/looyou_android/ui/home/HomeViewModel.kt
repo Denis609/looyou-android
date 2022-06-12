@@ -3,7 +3,7 @@ package ru.looyou.looyou_android.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ru.looyou.looyou_android.api.oauth.TokenDto
+import ru.looyou.looyou_android.api.dto.TokenDto
 import ru.looyou.looyou_android.base.SharedPrefs
 import javax.inject.Inject
 
