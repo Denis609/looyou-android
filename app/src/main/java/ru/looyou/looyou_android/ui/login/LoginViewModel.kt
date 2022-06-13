@@ -33,6 +33,18 @@ class LoginViewModel @Inject constructor(
         }
     }
 
+    fun singInGoogle(
+        authorization_code: String
+    ) {
+        viewModelScope.launch(Dispatchers.IO + errorHandler) {
+            apiService.signInGoogle(authorization_code)
+            val response: HttpResponse = apiService.getCode()
+            val code = parse(URI(response.headers["Location"]))
+            sharedPrefs.authToken = apiService.getTokens(code!!)
+            success.postValue(true)
+        }
+    }
+
     private fun parse(uri: URI): String? {
         val parameters: Map<String, String> = uri.query.split("&").associate {
             it.split("=").let {

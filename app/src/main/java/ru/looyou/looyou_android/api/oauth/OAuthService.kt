@@ -21,6 +21,8 @@ interface OAuthService {
 
     suspend fun getTokens(code: String): TokenDto
 
+    suspend fun signInGoogle(authorization_code: String): HttpResponse
+
     companion object {
         fun create(): HttpClient =
             HttpClient {

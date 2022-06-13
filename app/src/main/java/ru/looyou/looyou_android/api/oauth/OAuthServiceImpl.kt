@@ -19,8 +19,20 @@ class OAuthServiceImpl @Inject constructor(
     ): HttpResponse {
         return client.post("login") {
             setBody(FormDataContent(Parameters.build {
-                append("username", login)
+                append("email", login)
                 append("password", password)
+                append("account_type", "Looyou")
+            }))
+        }
+    }
+
+    override suspend fun signInGoogle(
+        authorization_code: String
+    ): HttpResponse {
+        return client.post("login") {
+            setBody(FormDataContent(Parameters.build {
+                append("authorization_code", authorization_code)
+                append("account_type", "Google")
             }))
         }
     }
