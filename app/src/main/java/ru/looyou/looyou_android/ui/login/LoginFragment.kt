@@ -2,7 +2,9 @@ package ru.looyou.looyou_android.ui.login
 
 import android.app.Activity
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,8 +19,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.vk.api.sdk.VK
+import com.vk.api.sdk.auth.VKAccessToken
+import com.vk.api.sdk.auth.VKAuthenticationResult
+import com.vk.api.sdk.auth.VKScope
+import com.vk.api.sdk.ui.VKWebViewAuthActivity
 import dagger.hilt.android.AndroidEntryPoint
 import ru.looyou.looyou_android.Const
+import ru.looyou.looyou_android.R
 import ru.looyou.looyou_android.api.extension.onUnAuthorize
 import ru.looyou.looyou_android.databinding.LoginFragmentBinding
 
@@ -47,6 +55,22 @@ class LoginFragment : Fragment() {
                 binding.password.editText?.text.toString()
             )
         }
+//        val vkStartForResult = VK.login(requireActivity()) { result ->
+//            when (result) {
+//                is VKAuthenticationResult.Success -> {
+//
+//                }
+//                is VKAuthenticationResult.Failed -> {
+//                    // User didn't pass authorization
+//                }
+//            }
+//        }
+        binding.vk.setOnClickListener {
+//            vkStartForResult.launch(arrayListOf())
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://oauth.vk.com/authorize?client_id=8193627&display=popup&redirect_uri=https://looyou-dev.com/&scope=friends&response_type=code&v=5.131")
+            start.launch(intent)
+        }
 
         viewModel.success.observe(viewLifecycleOwner) {
             onUnAuthorize()
@@ -64,7 +88,10 @@ class LoginFragment : Fragment() {
             val signInIntent: Intent = mGoogleSignInClient.signInIntent
             startForResult.launch(signInIntent)
         }
+    }
 
+    private val start = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        val a = 1
     }
 
     private val startForResult: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -83,8 +110,6 @@ class LoginFragment : Fragment() {
             }
 
         } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.statusCode)
         }
     }
