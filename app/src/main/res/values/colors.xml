@@ -15,4 +15,9 @@
     <color name="login_text">#A4ACB6</color>
     <color name="login_text_black">#6A6A6A</color>
     <color name="edit_text_color_black">#333333</color>
+
+    <color name="white_75">#75FFFFFF</color>
+    <color name="black_75">#75000000</color>
+
+    <color name="tab_background">#141414</color>
 </resources>

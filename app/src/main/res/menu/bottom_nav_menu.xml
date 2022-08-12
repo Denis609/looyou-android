@@ -5,9 +5,13 @@
         android:icon="@drawable/ic_home"
         android:title="@string/home"/>
     <item
-        android:id="@+id/search"
+        android:id="@+id/posts"
         android:icon="@drawable/ic_search"
-        android:title="@string/search"/>
+        android:title="@string/posts"/>
+
+    <item
+        android:id="@+id/placeholder"
+        android:title=""/>
     <item
         android:id="@+id/messenger"
         android:icon="@drawable/ic_messenger"

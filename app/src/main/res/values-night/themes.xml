@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Looyouandroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="android:background">@color/night_theme_background</item>
+        <item name="android:windowBackground">@color/night_theme_background</item>
         <item name="android:colorControlActivated">@color/blue_color</item>
         <item name="colorPrimary">@color/night_theme_background</item>
         <item name="colorPrimaryVariant">@color/night_theme_background</item>
@@ -12,11 +12,11 @@
         <item name="colorSecondaryVariant">@color/night_theme_background</item>
         <item name="colorOnSecondary">@color/blue_color</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >@color/night_theme_background</item>
+        <item name="android:statusBarColor">@color/night_theme_background</item>
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="LoginTextInputLayoutStyle"  parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxBackgroundMode">outline</item>
         <item name="boxStrokeWidthFocused">2dp</item>
         <item name="boxStrokeWidth">2dp</item>
@@ -32,8 +32,6 @@
     </style>
 
     <style name="LoginTextInputEditTextStyle" parent="@style/TextAppearance.AppCompat.Small">
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
         <item name="fontFamily">@font/poppins_regular</item>
     </style>
 
@@ -48,5 +46,12 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="MyCustomTabLayout">
+        <item name="tabSelectedTextColor">@color/black</item>
+        <item name="tabTextColor">@color/white</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabRippleColor">#00000000</item>
     </style>
 </resources>

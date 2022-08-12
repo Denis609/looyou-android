@@ -17,7 +17,7 @@ class OAuthServiceImpl @Inject constructor(
         login: String,
         password: String
     ): HttpResponse {
-        return client.post("login") {
+        return client.post("auth/login") {
             setBody(FormDataContent(Parameters.build {
                 append("email", login)
                 append("password", password)
@@ -29,7 +29,7 @@ class OAuthServiceImpl @Inject constructor(
     override suspend fun signInGoogle(
         authorization_code: String
     ): HttpResponse {
-        return client.post("login") {
+        return client.post("auth/login") {
             setBody(FormDataContent(Parameters.build {
                 append("authorization_code", authorization_code)
                 append("account_type", "Google")
@@ -38,11 +38,11 @@ class OAuthServiceImpl @Inject constructor(
     }
 
     override suspend fun getCode(): HttpResponse {
-        return client.get("oauth2/authorize?response_type=code&client_id=${Const.CLIENT_ID}&scope=${Const.SCOPE}&redirect_uri=${Const.REDIRECT_URI}")
+        return client.get("auth/authorize?response_type=code&client_id=${Const.CLIENT_ID}&scope=${Const.SCOPE}&redirect_uri=${Const.REDIRECT_URI}")
     }
 
     override suspend fun getTokens(code: String): TokenDto {
-        return client.post("oauth2/token") {
+        return client.post("auth/token") {
             setBody(FormDataContent(Parameters.build {
                 append("grant_type", Const.GRANT_TYPE)
                 append("client_id", Const.CLIENT_ID)

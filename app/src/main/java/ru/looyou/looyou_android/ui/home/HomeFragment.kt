@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import ru.looyou.looyou_android.R
+import kotlinx.coroutines.flow.collect
 import ru.looyou.looyou_android.api.extension.onUnAuthorize
 import ru.looyou.looyou_android.databinding.HomeFragmentBinding
 
@@ -30,8 +30,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getToken()
-        viewModel.token.observe(viewLifecycleOwner) {
-            binding.token.text = "Access token = $it"
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.token.collect {
+                binding.token.text = "Access token = $it"
+            }
         }
 
         binding.logout.setOnClickListener {

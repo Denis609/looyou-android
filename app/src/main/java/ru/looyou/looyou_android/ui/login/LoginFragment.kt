@@ -1,41 +1,21 @@
 package ru.looyou.looyou_android.ui.login
 
-import android.app.Activity
-import android.content.ContentValues.TAG
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
-import com.vk.api.sdk.VK
-import com.vk.api.sdk.auth.VKAccessToken
-import com.vk.api.sdk.auth.VKAuthenticationResult
-import com.vk.api.sdk.auth.VKScope
-import com.vk.api.sdk.ui.VKWebViewAuthActivity
-import dagger.hilt.android.AndroidEntryPoint
-import ru.looyou.looyou_android.Const
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.android.material.tabs.TabLayoutMediator
 import ru.looyou.looyou_android.R
-import ru.looyou.looyou_android.api.extension.onUnAuthorize
 import ru.looyou.looyou_android.databinding.LoginFragmentBinding
 
-
-@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var binding: LoginFragmentBinding
-    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,69 +28,62 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.signInButton.setOnClickListener {
-            viewModel.singIn(
-                binding.email.editText?.text.toString(),
-                binding.password.editText?.text.toString()
-            )
-        }
-//        val vkStartForResult = VK.login(requireActivity()) { result ->
-//            when (result) {
-//                is VKAuthenticationResult.Success -> {
-//
-//                }
-//                is VKAuthenticationResult.Failed -> {
-//                    // User didn't pass authorization
-//                }
-//            }
-//        }
-        binding.vk.setOnClickListener {
-//            vkStartForResult.launch(arrayListOf())
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("https://oauth.vk.com/authorize?client_id=8193627&display=popup&redirect_uri=https://looyou-dev.com/&scope=friends&response_type=code&v=5.131")
-            start.launch(intent)
-        }
-
-        viewModel.success.observe(viewLifecycleOwner) {
-            onUnAuthorize()
-        }
-
-        binding.google.setOnClickListener {
-
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .requestServerAuthCode(Const.CLIENT_ID_GOOGLE)
-                .build()
-
-            val mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso);
-
-            val signInIntent: Intent = mGoogleSignInClient.signInIntent
-            startForResult.launch(signInIntent)
-        }
+        tabAdapterInit()
+        tabSelectedInit()
     }
 
-    private val start = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        val a = 1
+    private fun setTabBackground(tab1: Int, tab2: Int) {
+        val tabStrip: ViewGroup = binding.tabBar.getChildAt(0) as ViewGroup
+        setTabItem(tabStrip.getChildAt(0), tab1)
+        setTabItem(tabStrip.getChildAt(1), tab2)
     }
 
-    private val startForResult: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val intent = result.data
-            val task = GoogleSignIn.getSignedInAccountFromIntent(intent)
-            handleSignInResult(task)
-        }
+    private fun setTabItem(tabView: View, tab: Int) {
+        val paddingStart = tabView.paddingStart
+        val paddingTop = tabView.paddingTop
+        val paddingEnd = tabView.paddingEnd
+        val paddingBottom = tabView.paddingBottom
+        ViewCompat.setBackground(
+            tabView,
+            AppCompatResources.getDrawable(tabView.context, tab)
+        )
+        ViewCompat.setPaddingRelative(
+            tabView,
+            paddingStart,
+            paddingTop,
+            paddingEnd,
+            paddingBottom
+        )
     }
 
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account: GoogleSignInAccount = completedTask.getResult(ApiException::class.java)
-            account.serverAuthCode?.let {
-                viewModel.singInGoogle(it)
+    private fun tabAdapterInit() {
+        binding.viewPager.adapter = ViewPagerAdapter(this)
+        TabLayoutMediator(binding.tabBar, binding.viewPager) { tab, position ->
+            resources.getStringArray(R.array.login_items).also {
+                tab.text = it[position]
+            }
+        }.attach()
+        setTabBackground(R.drawable.left_blue_tab_layout, R.drawable.right_empty_tab_layout)
+    }
+
+    private fun tabSelectedInit() {
+        binding.tabBar.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                if (binding.tabBar.selectedTabPosition == 0) {
+                    setTabBackground(
+                        R.drawable.left_blue_tab_layout,
+                        R.drawable.right_empty_tab_layout
+                    );
+                } else {
+                    setTabBackground(
+                        R.drawable.left_empty_tab_layout,
+                        R.drawable.right_orange_tab_layout
+                    );
+                }
             }
 
-        } catch (e: ApiException) {
-            Log.w(TAG, "signInResult:failed code=" + e.statusCode)
-        }
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
     }
 }

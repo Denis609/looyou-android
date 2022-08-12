@@ -24,123 +24,25 @@
             app:layout_constraintTop_toBottomOf="@id/looyou_logo"
             app:srcCompat="@drawable/looyou" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email"
-            style="@style/LoginTextInputLayoutStyle"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabBar"
+            style="@style/MyCustomTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="80dp"
-            android:hint="@string/email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/looyou_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/LoginTextInputEditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
-            style="@style/LoginTextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="4dp"
-            android:hint="@string/password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/email">
-
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/LoginTextInputEditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signIn_button"
-            style="@style/DefaultButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/sign_in"
-            app:layout_constraintTop_toBottomOf="@id/password"
-            tools:ignore="TouchTargetSizeCheck"
-            tools:layout_editor_absoluteX="20dp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/forgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="@string/forgot_password"
-            android:textColor="@color/orange_color"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/signIn_button" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/loginVia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="@string/login_via"
-            android:textColor="@color/blue_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/vk"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintBottom_toTopOf="@id/barrier"
-            app:layout_constraintEnd_toStartOf="@id/google"
-            app:layout_constraintStart_toStartOf="@id/loginVia"
-            app:layout_constraintTop_toBottomOf="@id/loginVia"
-            app:srcCompat="@drawable/vk_logo" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/google"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintBottom_toTopOf="@id/barrier"
-            app:layout_constraintEnd_toEndOf="@id/loginVia"
-            app:layout_constraintStart_toEndOf="@id/vk"
-            app:layout_constraintTop_toBottomOf="@id/loginVia"
-            app:srcCompat="@drawable/google_logo" />
-
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrier"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="vk, google" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/signUp"
-            style="@style/SignUpButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/sign_up"
+            app:layout_constraintBottom_toTopOf="@id/viewPager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/looyou_text" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/barrier"
-            app:layout_constraintVertical_bias="0" />
+            app:layout_constraintTop_toBottomOf="@id/tabBar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

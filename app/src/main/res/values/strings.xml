@@ -10,10 +10,16 @@
     <string name="next">Продолжить</string>
 
     <string name="polici">Нажимая «Продолжить», вы принимаете пользовательское соглашение и политику конфиденциальности</string>
-<!--    Bottom menu -->
-    <string name="home">Главная</string>
+    <!--    Bottom menu -->
+    <string name="home">Лента</string>
     <string name="more">Ещё</string>
-    <string name="messenger">Мессенджер</string>
-    <string name="search">Поиск</string>
+    <string name="messenger">Чат</string>
+    <string name="posts">Посты</string>
     <integer name="com_vk_sdk_AppId">8193627</integer>
+
+    <string-array name="login_items">
+        <item>Авторизация</item>
+        <item>Регистрация</item>
+    </string-array>
+
 </resources>
