@@ -36,3 +36,4 @@ jobs:
       - name: Deploy dev
         run: |
           cd ./app/build/outputs/apk/debug && rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . looyou@looyou.online:/home/looyou/android
+          ssh -i $HOME/.ssh/key looyou@80.78.241.202 'home/looyou/api/bot/requests/build-dev_new.bat'
