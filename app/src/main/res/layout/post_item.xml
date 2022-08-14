@@ -7,7 +7,7 @@
     android:layout_marginVertical="5dp"
     android:background="@drawable/post_round">
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/postPhoto_viewPager"
         android:layout_width="0dp"
         android:layout_height="245dp"

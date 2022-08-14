@@ -29,7 +29,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.postViewPager.adapter = PostPagerAdapter(this)
-        binding.postViewPager.isUserInputEnabled = false
         TabLayoutMediator(binding.tabLayout, binding.postViewPager) { tab, position ->
             resources.getStringArray(R.array.posts_items).also {
                 tab.text = it[position]

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">looyou-android</string>
+    <string name="app_name">LooYou</string>
 
     <string name="email">Email</string>
     <string name="password">Пароль</string>

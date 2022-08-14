@@ -1,35 +1,38 @@
 package ru.looyou.looyou_android.ui.home
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.viewpager.widget.PagerAdapter
+import androidx.recyclerview.widget.RecyclerView
 import ru.looyou.looyou_android.databinding.PostPhotoItemBinding
 import ru.looyou.looyou_android.util.ImageLoader
 
-class PostPhotoPagerAdapter(
-    val context: Context,
-    private val items: List<String>
-) : PagerAdapter() {
-    override fun getCount(): Int = items.size
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val binding = PostPhotoItemBinding.inflate(LayoutInflater.from(context), container, false)
-        ImageLoader.picasso(
-            url = items[position],
-            binding.postPhoto
+class PostPhotoPagerAdapter internal constructor(private val items: List<String>) :
+    RecyclerView.Adapter<PostPhotoPagerAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): PostPhotoPagerAdapter.ViewHolder =
+        ViewHolder(
+            PostPhotoItemBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
         )
-        container.addView(binding.root)
-        return binding.root
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(items)
     }
 
-    override fun isViewFromObject(view: View, `object`: Any): Boolean = view == `object`
+    override fun getItemCount(): Int = items.size
 
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as LinearLayout)
+    inner class ViewHolder(private val binding: PostPhotoItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(items: List<String>) {
+            ImageLoader.picasso(
+                url = items[adapterPosition],
+                imageView = binding.postPhoto
+            )
+        }
     }
 }
-
-

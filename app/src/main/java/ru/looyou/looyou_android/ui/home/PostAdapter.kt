@@ -1,18 +1,23 @@
 package ru.looyou.looyou_android.ui.home
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.annotation.SuppressLint
+import android.view.*
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayoutMediator
+import ru.looyou.looyou_android.R
 import ru.looyou.looyou_android.api.dto.PostDto
 import ru.looyou.looyou_android.databinding.PostItemBinding
 import ru.looyou.looyou_android.util.ImageLoader
 
 
-class PostAdapter (private val items: List<PostDto>) : RecyclerView
+class PostAdapter(private val items: List<PostDto>) : RecyclerView
 .Adapter<PostAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: PostItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: PostItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        @SuppressLint("ClickableViewAccessibility")
         fun bind(items: List<PostDto>) {
             binding.addres.text = items[adapterPosition].addres
             binding.date.text = items[adapterPosition].date
@@ -23,11 +28,44 @@ class PostAdapter (private val items: List<PostDto>) : RecyclerView
             listItems.add("https://iso.500px.com/wp-content/uploads/2016/11/stock-photo-159533631-1500x1000.jpg")
             listItems.add("https://www.dianamiaus.com/wp-content/uploads/2019/07/sonnie-hiles-wy1TL6p-9rA-unsplash.jpg")
             listItems.add("https://www.paperlessmovement.com/wp-content/uploads/2019/09/o2dvsv2pnhe.jpg")
-            binding.postPhotoViewPager.adapter = PostPhotoPagerAdapter(binding.root.context, listItems)
+            binding.postPhotoViewPager.adapter = PostPhotoPagerAdapter(listItems)
+            binding.postPhotoViewPager.isUserInputEnabled = false
+
+            val maxCountPhoto: Int = items.size - 1
+            val minCountPhoto: Int = 0
+            var countPhoto: Int = 0
+
+            binding.postPhotoViewPager.setOnTouchListener() { _, motionEvent ->
+                if (motionEvent.action == MotionEvent.ACTION_UP) {
+                    if (motionEvent.x > binding.postPhotoViewPager.width / 2) {
+                        // право
+                        if (countPhoto >= maxCountPhoto) {
+                            countPhoto = minCountPhoto
+                        } else {
+                            countPhoto += 1
+                        }
+                        binding.postPhotoViewPager.currentItem = countPhoto
+                    } else {
+                        // лево
+                        if (countPhoto <= minCountPhoto) {
+                            countPhoto = maxCountPhoto
+                        } else {
+                            countPhoto -= 1
+                        }
+                        binding.postPhotoViewPager.currentItem = countPhoto
+                    }
+                }
+                true
+            }
+
             if (listItems.size <= 1) {
                 binding.tabLayout.isVisible = false
             } else {
-                binding.tabLayout.setupWithViewPager(binding.postPhotoViewPager, true)
+                TabLayoutMediator(binding.tabLayout, binding.postPhotoViewPager) { tab, position ->
+                    binding.root.resources.getStringArray(R.array.posts_items).also {
+                        tab.text = it[position]
+                    }
+                }.attach()
             }
 
             ImageLoader.picasso(
@@ -37,7 +75,7 @@ class PostAdapter (private val items: List<PostDto>) : RecyclerView
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
             PostItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
