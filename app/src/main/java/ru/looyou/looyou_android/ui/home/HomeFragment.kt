@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import ru.looyou.looyou_android.api.extension.onUnAuthorize
+import ru.looyou.looyou_android.extension.onUnAuthorize
 import ru.looyou.looyou_android.databinding.HomeFragmentBinding
 
 @AndroidEntryPoint

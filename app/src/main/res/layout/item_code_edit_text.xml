@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="42dp"
+    android:layout_height="50dp"
+    android:layout_margin="3.5dp">
+
+    <!-- My custom TextView -->
+    <TextView
+        android:id="@+id/tvCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textCursorDrawable="@drawable/gradient_button"
+        style="@style/SignUpButtonStyle"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="40sp" />
+
+    <!-- Eventual other view to beautify the layout -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_gravity="bottom"
+        android:background="@color/orange_color" />
+</FrameLayout>

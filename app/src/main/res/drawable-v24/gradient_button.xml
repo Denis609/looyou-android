@@ -4,7 +4,6 @@
         android:state_pressed="false">
         <shape
             android:shape="rectangle">
-            <!--  Gradient Bg for listrow -->
             <gradient
                 android:startColor="@color/blue_color"
                 android:endColor="@color/orange_color"
@@ -17,7 +16,6 @@
         android:state_pressed="true">
         <shape
             android:shape="rectangle">
-            <!--  Gradient Bg for listrow -->
             <gradient
                 android:startColor="#9071AAEB"
                 android:endColor="#90F05C26"

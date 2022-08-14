@@ -1,4 +1,4 @@
-package ru.looyou.looyou_android.api.extension
+package ru.looyou.looyou_android.extension
 
 import android.app.Activity
 import ru.looyou.looyou_android.MainActivity

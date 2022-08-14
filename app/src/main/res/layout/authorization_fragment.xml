@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
@@ -20,7 +20,8 @@
         <com.google.android.material.textfield.TextInputEditText
             style="@style/LoginTextInputEditTextStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -54,7 +55,6 @@
         app:layout_constraintTop_toBottomOf="@id/password"
         tools:ignore="TouchTargetSizeCheck"
         tools:layout_editor_absoluteX="20dp" />
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -62,6 +62,7 @@
         android:layout_height="wrap_content"
         android:elevation="20dp"
         android:indeterminateTint="@color/tab_background"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/signIn_button"
         app:layout_constraintEnd_toEndOf="@id/signIn_button"
         app:layout_constraintStart_toStartOf="@id/signIn_button"

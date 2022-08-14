@@ -2,19 +2,29 @@
     <string name="app_name">looyou-android</string>
 
     <string name="email">Email</string>
-    <string name="password">Password</string>
+    <string name="password">Пароль</string>
+    <string name="password_confirm">Повторите пароль</string>
     <string name="sign_in">Войти</string>
     <string name="forgot_password">Забыли пароль?</string>
     <string name="login_via">Войти через</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="next">Продолжить</string>
+    <string name="back">Назад</string>
+    <string name="send_code">Запросить код</string>
+    <string name="password_error">Пароли не совпадают!</string>
+    <string name="password_error_lenght">Пароли должен содержать больше 6 символов!</string>
 
     <string name="polici">Нажимая «Продолжить», вы принимаете пользовательское соглашение и политику конфиденциальности</string>
+    <string name="code_title_text">Введите код отправленный на Email</string>
+    <string name="create_a_password">Придумайте пароль</string>
+    <string name="resent_the_code_after">%s</string>
+
     <!--    Bottom menu -->
     <string name="home">Лента</string>
-    <string name="more">Ещё</string>
+    <string name="profile">Профиль</string>
     <string name="messenger">Чат</string>
     <string name="posts">Посты</string>
+
     <integer name="com_vk_sdk_AppId">8193627</integer>
 
     <string-array name="login_items">

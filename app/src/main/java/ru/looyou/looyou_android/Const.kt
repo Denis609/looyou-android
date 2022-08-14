@@ -4,9 +4,12 @@ import androidx.viewbinding.BuildConfig
 
 object Const {
 
-    private const val BASE_OAUTH_URL_WORK = "https://looyou.online/api/"
-    private const val BASE_OAUTH_URL_TEST = "https://looyou.online/api/"
-    val baseOAuthUrl = if (BuildConfig.DEBUG) BASE_OAUTH_URL_TEST else BASE_OAUTH_URL_WORK
+    private const val BASE_URL_DEV = "https://looyou.online/api/"
+    private const val AUTH = "auth/"
+    private const val LOOYOU = "looyou/"
+
+    const val baseAuthUrl = BASE_URL_DEV + AUTH
+    const val baseLooYouUrl = BASE_URL_DEV + LOOYOU
 
     const val CLIENT_ID = "72935774ef0f2ecf3c9514bba3e16375f766fac060acc63790e1e21a98d0cb12"
     const val SCOPE = "mobile-app"

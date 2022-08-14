@@ -21,10 +21,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import ru.looyou.looyou_android.Const
 import ru.looyou.looyou_android.R
-import ru.looyou.looyou_android.api.extension.onUnAuthorize
+import ru.looyou.looyou_android.extension.onUnAuthorize
 import ru.looyou.looyou_android.databinding.AuthorizationFragmentBinding
 
 @AndroidEntryPoint

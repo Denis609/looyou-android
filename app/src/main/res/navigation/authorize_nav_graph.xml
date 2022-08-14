@@ -9,7 +9,9 @@
         android:name="ru.looyou.looyou_android.ui.home.HomeFragment"
         tools:layout="@layout/home_fragment"/>
 
-
+    <fragment android:id="@+id/posts"
+        android:name="ru.looyou.looyou_android.ui.posts.PostsFragment"
+        tools:layout="@layout/posts_fragment"/>
 
 
 

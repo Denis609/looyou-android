@@ -54,4 +54,16 @@
         <item name="tabIndicatorHeight">0dp</item>
         <item name="tabRippleColor">#00000000</item>
     </style>
+
+    <style name="Floating" parent="Widget.Design.FloatingActionButton">
+        <item name="android:foreground">@drawable/gradient_button_fab</item>
+    </style>
+
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/activate_indicator_color</item>
+        <item name="marginHorizontal">0dp</item>
+        <item name="android:width">48dp</item>
+        <item name="android:height">28dp</item>
+    </style>
 </resources>
