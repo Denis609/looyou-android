@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/posts"
-        android:name="ru.looyou.looyou_android.ui.posts.PostsFragment"
+        android:name="ru.looyou.looyou_android.ui.posts.PostFragment"
         tools:layout="@layout/posts_fragment" />
 
     <action

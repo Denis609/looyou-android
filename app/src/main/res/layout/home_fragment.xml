@@ -1,22 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/token"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="36dp"
+        android:background="@color/item_post_background"
+        android:fitsSystemWindows="true">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/token" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            app:collapsedTitleTextColor="@color/white"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="4dp"
+                app:srcCompat="@drawable/looyou_logo" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="100dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/looyou" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="12dp"
+                app:srcCompat="@drawable/ic_notifications"
+                app:tint="@color/orange_color" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                app:srcCompat="@drawable/ic_filter" />
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        style="@style/TabTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_gravity="top"
+        android:background="@color/item_post_background"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:tabIndicator="@drawable/indicator"
+        app:tabIndicatorColor="@color/white"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="auto" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/post_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

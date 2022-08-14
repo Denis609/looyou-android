@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import ru.looyou.looyou_android.extension.onUnAuthorize
+import ru.looyou.looyou_android.R
 import ru.looyou.looyou_android.databinding.HomeFragmentBinding
 
 @AndroidEntryPoint
@@ -28,16 +28,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getToken()
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.token.collect {
-                binding.token.text = "Access token = $it"
+        binding.postViewPager.adapter = PostPagerAdapter(this)
+        binding.postViewPager.isUserInputEnabled = false
+        TabLayoutMediator(binding.tabLayout, binding.postViewPager) { tab, position ->
+            resources.getStringArray(R.array.posts_items).also {
+                tab.text = it[position]
             }
-        }
-
-        binding.logout.setOnClickListener {
-            viewModel.logout()
-            onUnAuthorize()
-        }
+        }.attach()
     }
 }

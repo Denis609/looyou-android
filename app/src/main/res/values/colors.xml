@@ -16,6 +16,8 @@
     <color name="login_text_black">#6A6A6A</color>
     <color name="edit_text_color_black">#333333</color>
 
+    <color name="item_post_background">#333333</color>
+
     <color name="activate_indicator_color">#636363</color>
     <color name="white_75">#75FFFFFF</color>
     <color name="black_75">#75000000</color>

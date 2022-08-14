@@ -1,4 +1,4 @@
-package ru.looyou.looyou_android.ui.home
+package ru.looyou.looyou_android.ui.posts
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,9 +9,19 @@ import ru.looyou.looyou_android.base.SharedPrefs
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class PostViewModel @Inject constructor(
     private val sharedPrefs: SharedPrefs
 ) : BaseViewModel() {
 
 
+    private val _token: MutableStateFlow<TokenDto?> = MutableStateFlow(null)
+    val token: StateFlow<TokenDto?> = _token
+
+    fun getToken() {
+        _token.value = sharedPrefs.authToken
+    }
+
+    fun logout() {
+        sharedPrefs.logout()
+    }
 }

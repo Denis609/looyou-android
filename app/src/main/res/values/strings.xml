@@ -32,4 +32,10 @@
         <item>Регистрация</item>
     </string-array>
 
+    <string-array name="posts_items">
+        <item>Поиск</item>
+        <item>Знакомства</item>
+        <item>Интересы</item>
+    </string-array>
+
 </resources>
