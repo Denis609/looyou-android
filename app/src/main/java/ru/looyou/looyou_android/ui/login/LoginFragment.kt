@@ -73,12 +73,12 @@ class LoginFragment : Fragment() {
                     setTabBackground(
                         R.drawable.left_blue_tab_layout,
                         R.drawable.right_empty_tab_layout
-                    );
+                    )
                 } else {
                     setTabBackground(
                         R.drawable.left_empty_tab_layout,
                         R.drawable.right_orange_tab_layout
-                    );
+                    )
                 }
             }
 

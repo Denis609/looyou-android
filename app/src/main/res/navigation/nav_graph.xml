@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="ru.looyou.looyou_android.ui.login.LoginFragment"
+        tools:layout="@layout/login_fragment" />
+
+    <fragment
+        android:id="@+id/home"
+        android:name="ru.looyou.looyou_android.ui.home.HomeFragment"
+        tools:layout="@layout/home_fragment" />
+
+    <fragment
+        android:id="@+id/posts"
+        android:name="ru.looyou.looyou_android.ui.posts.PostsFragment"
+        tools:layout="@layout/posts_fragment" />
+
+    <action
+        android:id="@+id/action_login_to_home"
+        app:destination="@id/home"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_login"
+        app:destination="@id/login"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+</navigation>

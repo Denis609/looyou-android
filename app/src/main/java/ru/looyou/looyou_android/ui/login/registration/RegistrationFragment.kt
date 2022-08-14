@@ -116,7 +116,7 @@ class RegistrationFragment : Fragment() {
                         passwordConfirm.editText?.error = getString(R.string.password_error)
                     }
                 } else {
-                    passwordConfirm.editText?.error = getString(R.string.password_error)
+                    passwordConfirm.editText?.error = getString(R.string.password_error_lenght)
                 }
             }
         }

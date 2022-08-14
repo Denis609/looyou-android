@@ -9,11 +9,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import ru.looyou.looyou_android.databinding.ActivityMainBinding
+import ru.looyou.looyou_android.ui.login.LoginFragmentDirections
 
 
 @AndroidEntryPoint
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+        navController.setGraph(R.navigation.nav_graph)
         changeAuthorize()
 
         KeyboardVisibilityEvent.registerEventListener(activity = this) {
@@ -40,12 +42,12 @@ class MainActivity : AppCompatActivity() {
     fun changeAuthorize() {
         binding.navView.menu.clear()
         if (viewModel.authorize()) {
-            navController.setGraph(R.navigation.authorize_nav_graph)
             binding.navView.inflateMenu(R.menu.bottom_nav_menu)
             binding.navView.setupWithNavController(navController)
             setMenuItem()
+            navController.navigate(NavGraphDirections.actionLoginToHome())
         } else {
-            navController.setGraph(R.navigation.unauthorize_nav_graph)
+            navController.navigate(NavGraphDirections.actionLogin())
         }
         binding.navView.isVisible = viewModel.authorize()
         binding.fab.isVisible = binding.navView.isVisible
