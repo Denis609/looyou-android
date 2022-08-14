@@ -61,7 +61,7 @@
         android:background="@color/item_post_background"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:tabIndicator="@drawable/indicator"
-        app:tabIndicatorColor="@color/white"
+        app:tabIndicatorColor="@color/indicator_color"
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorHeight="2dp"
         app:tabMode="auto" />

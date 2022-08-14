@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="indicator_color">#000000</color>
+
     <color name="tab_background">#EDEEF0</color>
     <color name="item_post_background">#FFFFFF</color>
 </resources>
