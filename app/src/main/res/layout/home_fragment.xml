@@ -7,14 +7,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
         android:background="@color/item_post_background"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             app:collapsedTitleTextColor="@color/white"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="64dp"
@@ -22,29 +22,30 @@
             app:layout_scrollFlags="scroll|enterAlways">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="4dp"
                 app:srcCompat="@drawable/looyou_logo" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="100dp"
-                android:layout_height="16dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 app:srcCompat="@drawable/looyou" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="12dp"
                 app:srcCompat="@drawable/ic_notifications"
                 app:tint="@color/orange_color" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
                 app:srcCompat="@drawable/ic_filter" />
