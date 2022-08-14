@@ -55,7 +55,7 @@
         android:id="@+id/tabLayout"
         style="@style/TabTextStyle"
         android:layout_width="match_parent"
-        android:layout_height="24dp"
+        android:layout_height="28dp"
         android:layout_gravity="top"
         android:background="@color/item_post_background"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -69,6 +69,6 @@
         android:id="@+id/post_viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="28dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
