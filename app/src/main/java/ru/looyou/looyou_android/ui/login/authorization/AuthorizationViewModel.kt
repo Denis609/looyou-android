@@ -7,16 +7,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import ru.looyou.looyou_android.api.auth.AuthService
+import ru.looyou.domain.auth.*
 import ru.looyou.looyou_android.base.BaseViewModel
-import ru.looyou.looyou_android.base.SharedPrefs
+import ru.looyou.domain.db.sharedprefs.SharedPrefs
 import ru.looyou.looyou_android.util.Parser
 import java.net.URI
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthorizationViewModel @Inject constructor(
-    private val authService: AuthService,
+    private val authSignInUseCase: AuthSignInUseCase,
+    private val authGetCodeUseCase: AuthGetCodeUseCase,
+    private val authGetTokenUseCase: AuthGetTokenUseCase,
+    private val signInGoogleUseCase: AuthSignInGoogleUseCase,
     private val sharedPrefs: SharedPrefs
 ) : BaseViewModel() {
     private val _success: MutableStateFlow<Boolean> = MutableStateFlow(false)
@@ -28,23 +31,23 @@ class AuthorizationViewModel @Inject constructor(
     ) {
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
             loading.value = true
-            authService.signIn(login, password)
-            val response: HttpResponse = authService.getCode()
+            authSignInUseCase.execute(login, password)
+            val response: HttpResponse = authGetCodeUseCase.execute()
             val code = Parser.parse(URI(response.headers["Location"]))
-            sharedPrefs.authToken = authService.getTokens(code!!)
+            sharedPrefs.setAuthToken(authGetTokenUseCase.execute(code!!))
             _success.value = true
             loading.value = true
         }
     }
 
     fun singInGoogle(
-        authorization_code: String
+        authorizationCode: String
     ) {
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
-            authService.signInGoogle(authorization_code)
-            val response: HttpResponse = authService.getCode()
+            signInGoogleUseCase.execute(authorizationCode)
+            val response: HttpResponse = authGetCodeUseCase.execute()
             val code = Parser.parse(URI(response.headers["Location"]))
-            sharedPrefs.authToken = authService.getTokens(code!!)
+            sharedPrefs.setAuthToken(authGetTokenUseCase.execute(code!!))
             _success.value = true
         }
     }

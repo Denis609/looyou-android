@@ -6,8 +6,8 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayoutMediator
 import ru.looyou.looyou_android.R
-import ru.looyou.looyou_android.api.dto.PostDto
 import ru.looyou.looyou_android.databinding.PostItemBinding
+import ru.looyou.looyou_android.ui.home.search.PostDto
 import ru.looyou.looyou_android.util.ImageLoader
 
 

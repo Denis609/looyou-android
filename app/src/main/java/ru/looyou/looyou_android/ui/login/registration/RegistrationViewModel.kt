@@ -7,20 +7,30 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import ru.looyou.looyou_android.api.auth.AuthService
-import ru.looyou.looyou_android.api.dto.*
-import ru.looyou.looyou_android.api.looyou.LooYouService
+import ru.looyou.domain.auth.AuthGetCodeUseCase
+import ru.looyou.domain.auth.AuthGetTokenUseCase
+import ru.looyou.domain.auth.AuthSignInUseCase
+import ru.looyou.domain.looyou.account.model.*
 import ru.looyou.looyou_android.base.BaseViewModel
-import ru.looyou.looyou_android.base.SharedPrefs
+import ru.looyou.domain.db.sharedprefs.SharedPrefs
+import ru.looyou.domain.looyou.account.LooYouConfirmRegistrationUseCase
+import ru.looyou.domain.looyou.account.LooYouCreateAccountUseCase
+import ru.looyou.domain.looyou.account.LooYouCreateRegistrationUseCase
+import ru.looyou.domain.looyou.account.LooYouSendVerifyCodeUseCase
 import ru.looyou.looyou_android.util.Parser
 import java.net.URI
 import javax.inject.Inject
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
-    private val looYouService: LooYouService,
-    private val authService: AuthService,
-    private val sharedPrefs: SharedPrefs
+    private val looYouCreateRegistrationUseCase: LooYouCreateRegistrationUseCase,
+    private val looYouConfirmRegistrationUseCase: LooYouConfirmRegistrationUseCase,
+    private val looYouCreateAccountUseCase: LooYouCreateAccountUseCase,
+    private val looYouSendVerifyCodeUseCase: LooYouSendVerifyCodeUseCase,
+    private val authSignInUseCase: AuthSignInUseCase,
+    private val authGetCodeUseCase: AuthGetCodeUseCase,
+    private val authGetTokenUseCase: AuthGetTokenUseCase,
+    private val sharedPrefs: SharedPrefs,
 ) : BaseViewModel() {
 
     private val _registrationState: MutableStateFlow<AccountRegistrationDto?> =
@@ -39,7 +49,7 @@ class RegistrationViewModel @Inject constructor(
     fun createRegistration(email: String) {
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
             loading.value = true
-            _registrationState.value = looYouService.createRegistration(
+            _registrationState.value = looYouCreateRegistrationUseCase.execute(
                 AccountRegistrationCreateDto(email = email)
             )
             loading.value = false
@@ -49,7 +59,7 @@ class RegistrationViewModel @Inject constructor(
     fun confirmRegistration(verificationCode: String) {
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
             loading.value = true
-            _registrationState.value = looYouService.confirmRegistration(
+            _registrationState.value = looYouConfirmRegistrationUseCase.execute(
                 AccountRegistrationVerifyDto(
                     accountRegistrationId = registrationState.value!!.id,
                     verificationCode = verificationCode
@@ -63,7 +73,7 @@ class RegistrationViewModel @Inject constructor(
         _password = password
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
             loading.value = true
-            _account.value = looYouService.createAccount(
+            _account.value = looYouCreateAccountUseCase.execute(
                 AccountCreateDto(
                     accountRegistrationId = registrationState.value!!.id,
                     password = password
@@ -76,7 +86,7 @@ class RegistrationViewModel @Inject constructor(
     fun sendVerifyCode() {
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
             loading.value = true
-            looYouService.sendVerifyCode(
+            looYouSendVerifyCodeUseCase.execute(
                 AccountRegistrationSendVerifyCodeDto(
                     accountRegistrationId = registrationState.value!!.id
                 )
@@ -86,14 +96,14 @@ class RegistrationViewModel @Inject constructor(
     }
 
     fun singIn(
-        login: String
+        login: String,
     ) {
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
             loading.value = true
-            authService.signIn(login, _password)
-            val response: HttpResponse = authService.getCode()
+            authSignInUseCase.execute(login, _password)
+            val response: HttpResponse = authGetCodeUseCase.execute()
             val code = Parser.parse(URI(response.headers["Location"]))
-            sharedPrefs.authToken = authService.getTokens(code!!)
+            sharedPrefs.setAuthToken(authGetTokenUseCase.execute(code!!))
             _success.value = true
             loading.value = true
         }

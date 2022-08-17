@@ -11,7 +11,17 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+//        maven {
+//            name = "looyou-api"
+//            url = uri("https://maven.pkg.github.com/looyou/looyou-apicore")
+//            credentials {
+//                username = findProperty("username").toString() ?: System.getenv("username")
+//                password = findProperty("password").toString() ?: System.getenv("password")
+//            }
+//        }
     }
 }
 rootProject.name = "looyou-android"
 include ':app'
+include ':domain'
+include ':data'

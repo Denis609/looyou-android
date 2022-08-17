@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import ru.looyou.looyou_android.api.dto.PostDto
 import ru.looyou.looyou_android.databinding.SearchFragmentBinding
 import ru.looyou.looyou_android.ui.home.PostAdapter
 
@@ -61,3 +60,12 @@ class SearchFragment : Fragment() {
         binding.items.adapter = PostAdapter(items)
     }
 }
+
+data class PostDto(
+    val postPhoto: String?,
+    val profilePhoto: String?,
+    val name: String,
+    val year: String,
+    val addres: String,
+    val date: String
+)
