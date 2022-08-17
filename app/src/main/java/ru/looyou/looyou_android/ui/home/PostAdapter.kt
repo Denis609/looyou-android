@@ -25,7 +25,7 @@ class PostAdapter(private val items: List<PostDto>) : RecyclerView
             binding.years.text = items[adapterPosition].year
 
             val listItems = mutableListOf<String>()
-            listItems.add("https://iso.500px.com/wp-content/uploads/2016/11/stock-photo-159533631-1500x1000.jpg")
+            listItems.add("https://looyou.online/api/looyou/file/8dbf1742-0aa8-410d-b749-f3788d583633")
             listItems.add("https://www.dianamiaus.com/wp-content/uploads/2019/07/sonnie-hiles-wy1TL6p-9rA-unsplash.jpg")
             listItems.add("https://www.paperlessmovement.com/wp-content/uploads/2019/09/o2dvsv2pnhe.jpg")
             binding.postPhotoViewPager.adapter = PostPhotoPagerAdapter(listItems)
