@@ -30,8 +30,8 @@ class AuthServiceImpl @Inject constructor(
     ): HttpResponse = client.post("login") {
         setBody(FormDataContent(Parameters.build {
             append("authorization_code", authorizationCode)
-            append("account_type", "Google")
-            append("authentication_client", "Android")
+            append("authentication_method", "Google")
+            append("authentication_client", "Mobile")
         }))
     }
 

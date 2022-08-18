@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="340dp"
+            android:background="@color/item_post_background"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <FrameLayout
+                android:id="@+id/fl_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/anim_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#77002237"
+                android:visibility="invisible"
+                app:layout_collapseMode="pin" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgb_avatar_wrap"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:layout_gravity="bottom|center_horizontal"
+                tools:src="@drawable/looyou_logo" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/status"
+                style="@style/TextProfileStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="4dp"
+                android:text="Моя любимая цитата из мультика лунтик: Ребята давайте жить дружно"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/status_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="10dp"
+                android:background="#20B8C1CC"
+                app:layout_constraintTop_toBottomOf="@id/status" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/years_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/status_line"
+                app:srcCompat="@drawable/ic_years_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/years_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="12dp"
+                android:text="День рождения: 13 ноября 1999 г."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/years_imageView"
+                app:layout_constraintTop_toBottomOf="@id/status_line" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/years_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="years_imageView,years_textView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/city_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/years_barrier"
+                app:srcCompat="@drawable/ic_city_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/city_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="12dp"
+                android:text="Город: Барнаул"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/city_imageView"
+                app:layout_constraintTop_toBottomOf="@id/years_barrier" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/city_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="city_imageView,city_textView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/study_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/city_barrier"
+                app:srcCompat="@drawable/ic_study_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/study_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="12dp"
+                android:text="Образование: АлтГТУ им. Ползунова"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/study_imageView"
+                app:layout_constraintTop_toBottomOf="@id/city_barrier" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/study_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="study_imageView,study_textView" />
+
+            <View
+                android:id="@+id/aboutMe_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="10dp"
+                android:background="#20B8C1CC"
+                app:layout_constraintTop_toBottomOf="@id/study_barrier" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/hobby_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aboutMe_line"
+                app:srcCompat="@drawable/ic_hobby_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/hobby_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="12dp"
+                android:text="Увлечения: Dota 2, Пиво и аниме :)"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/hobby_imageView"
+                app:layout_constraintTop_toBottomOf="@id/aboutMe_line" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/hobby_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="hobby_imageView,hobby_textView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/music_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hobby_barrier"
+                app:srcCompat="@drawable/ic_music_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/music_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="12dp"
+                android:text="Музыка: Сектор газа"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/music_imageView"
+                app:layout_constraintTop_toBottomOf="@id/hobby_barrier" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/music_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="music_imageView,music_textView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/films_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/music_barrier"
+                app:srcCompat="@drawable/ic_films_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/films_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="12dp"
+                android:text="Фильмы: Титаник и властелин колец"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/films_imageView"
+                app:layout_constraintTop_toBottomOf="@id/music_barrier" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/films_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="films_imageView,films_textView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/books_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/films_barrier"
+                app:srcCompat="@drawable/ic_book_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/books_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="12dp"
+                android:text="Книги: Преступление и наказание"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/books_imageView"
+                app:layout_constraintTop_toBottomOf="@id/films_imageView" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/books_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="books_imageView,books_textView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/games_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/books_barrier"
+                app:srcCompat="@drawable/ic_games_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/games_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="12dp"
+                android:text="Игры: The Witcher 3: Wild Hunt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/games_imageView"
+                app:layout_constraintTop_toBottomOf="@id/books_barrier" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/games_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="games_imageView,games_textView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/aboutMe_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/games_barrier"
+                app:srcCompat="@drawable/ic_info_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/aboutMe_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="12dp"
+                android:text="О себе: Я люблю гулять и играть в бравл старс в школе со своей падругой Танькай!"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/aboutMe_imageView"
+                app:layout_constraintTop_toBottomOf="@id/games_barrier" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/aboutMe_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="aboutMe_imageView,aboutMe_textView" />
+
+            <View
+                android:id="@+id/posts_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="10dp"
+                android:background="#20B8C1CC"
+                app:layout_constraintTop_toBottomOf="@id/aboutMe_barrier" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/posts_imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/posts_line"
+                app:srcCompat="@drawable/looyou_logo" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/post_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Посты"
+                app:layout_constraintBottom_toBottomOf="@id/posts_imageView"
+                app:layout_constraintStart_toEndOf="@id/posts_imageView"
+                app:layout_constraintTop_toTopOf="@id/posts_imageView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/posts_imageView"
+                android:orientation="vertical"
+                tools:itemCount="2"
+                tools:listitem="@layout/post_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

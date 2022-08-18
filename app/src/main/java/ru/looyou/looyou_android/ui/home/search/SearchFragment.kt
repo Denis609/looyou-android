@@ -28,7 +28,7 @@ class SearchFragment : Fragment() {
         val items = mutableListOf<PostDto>()
         items.add(
             PostDto(
-                postPhoto = "https://play-lh.googleusercontent.com/CWzqShf8hi-AhV9dUjzsqk2URzdIv8Vk2LmxBzf-Hc8T-oGkLVXe6pMpcXv36ofpvtc",
+                postPhoto = "https://s.ws.pho.to/76eeee/img/index/ai/source.jpg",
                 profilePhoto = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbZp5yHd8-uso4BYtP6i7s-wNa3CgymO2qrq8oK_upoyoFRUkzlVMJ-XHbWFlHVgJWyKA&usqp=CAU",
                 name = "Dimassek",
                 year = "23 года",
