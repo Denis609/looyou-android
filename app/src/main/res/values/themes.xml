@@ -13,7 +13,8 @@
         <item name="colorSecondaryVariant">@color/white_theme_background</item>
         <item name="colorOnSecondary">@color/blue_color</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/white_theme_background</item>
+        <item name="android:statusBarColor">@color/item_post_background</item>
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -48,6 +49,17 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="TitleStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ProfileMiniTitleStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TabTextStyle">
@@ -85,4 +97,7 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+
+
 </resources>

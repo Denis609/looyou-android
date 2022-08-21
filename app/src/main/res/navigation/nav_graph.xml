@@ -23,7 +23,18 @@
     <fragment
         android:id="@+id/profile"
         android:name="ru.looyou.looyou_android.ui.profile.ProfileFragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment" >
+
+        <action
+            android:id="@+id/action_profile_to_profileDetails"
+            app:destination="@id/profileDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileDetails"
+        android:name="ru.looyou.looyou_android.ui.profile.details.ProfileDetailsFragment"
+        tools:layout="@layout/profile_details_fragment" />
+
 
     <action
         android:id="@+id/action_login_to_home"

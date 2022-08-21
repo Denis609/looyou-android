@@ -3,6 +3,7 @@ package ru.looyou.looyou_android
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.looyou.domain.db.sharedprefs.SharedPrefs
+import ru.looyou.looyou_android.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel

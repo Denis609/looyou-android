@@ -4,12 +4,14 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.http.*
+import ru.looyou.domain.db.sharedprefs.SharedPrefs
 import ru.looyou.domain.looyou.LooYouRepository
 import ru.looyou.domain.looyou.account.model.*
 
 class LooYouRepositoryImpl(
-    private val client: HttpClient,
-) : LooYouRepository {
+    private val client: HttpClient
+    ) : LooYouRepository {
 
     override suspend fun createRegistration(accountRegistrationCreateDto: AccountRegistrationCreateDto): AccountRegistrationDto =
         client.post("account/registration") {
@@ -30,4 +32,7 @@ class LooYouRepositoryImpl(
         client.post("account/registration/verify/code/send") {
             setBody(accountRegistrationSendVerifyCodeDto)
         }
+
+    override suspend fun getProfile(): Any =
+        client.get("profile")
 }

@@ -16,6 +16,8 @@ object LooYouModule {
 
     @Singleton
     @Provides
-    fun provideLooYouRepository(@NetworkLooYouModule.LooYouInterceptorOkHttpClient httpClient: HttpClient): LooYouRepository =
+    fun provideLooYouRepository(
+        @NetworkLooYouModule.LooYouInterceptorOkHttpClient httpClient: HttpClient
+    ): LooYouRepository =
         LooYouRepositoryImpl(httpClient)
 }

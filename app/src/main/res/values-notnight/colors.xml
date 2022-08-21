@@ -4,4 +4,6 @@
 
     <color name="tab_background">#EDEEF0</color>
     <color name="item_post_background">#FFFFFF</color>
+
+    <color name="line_color">#75B8C1CC</color>
 </resources>

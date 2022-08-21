@@ -11,4 +11,6 @@ interface LooYouRepository {
     suspend fun createAccount(accountCreateDto: AccountCreateDto): AccountDto
 
     suspend fun sendVerifyCode(accountRegistrationSendVerifyCodeDto: AccountRegistrationSendVerifyCodeDto): HttpResponse
+
+    suspend fun getProfile(): Any
 }

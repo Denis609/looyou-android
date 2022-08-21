@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         KeyboardVisibilityEvent.registerEventListener(activity = this) {
             binding.navView.isVisible = if (viewModel.authorize()) !it else false
+            binding.fab.isVisible = binding.navView.isVisible
         }
     }
 

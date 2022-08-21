@@ -25,4 +25,6 @@
     <color name="indicator_color">#FFFFFF</color>
 
     <color name="tab_background">#141414</color>
+
+    <color name="line_color">#20B8C1CC</color>
 </resources>

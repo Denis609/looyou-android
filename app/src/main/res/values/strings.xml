@@ -19,6 +19,23 @@
     <string name="create_a_password">Придумайте пароль</string>
     <string name="resent_the_code_after">%s</string>
 
+
+    <!--    Profile -->
+    <string name="name">Имя</string>
+    <string name="gender">Пол</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="birthday">Дата рождения</string>
+    <string name="study">Образование</string>
+    <string name="status">Статус</string>
+    <string name="about_me">О себе</string>
+    <string name="hobby">Увлечения</string>
+    <string name="music">Музыка</string>
+    <string name="films">Фильмы</string>
+    <string name="books">Книги</string>
+    <string name="games">Игры</string>
+    <string name="tell_more_about_yourself">Расскажите больше о себе</string>
+
     <!--    Bottom menu -->
     <string name="home">Лента</string>
     <string name="profile">Профиль</string>
