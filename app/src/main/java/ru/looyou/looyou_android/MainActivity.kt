@@ -3,9 +3,12 @@ package ru.looyou.looyou_android
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.TooltipCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -50,6 +53,17 @@ class MainActivity : AppCompatActivity() {
         } else {
             navController.navigate(NavGraphDirections.actionLogin())
         }
+
+        binding.navView.menu.forEach {
+            TooltipCompat.setTooltipText(binding.navView.findViewById(it.itemId), null)
+        }
+
+        binding.navView.menu.forEach {
+            binding.navView.findViewById<View>(it.itemId).setOnLongClickListener {
+                true
+            }
+        }
+
         binding.navView.isVisible = viewModel.authorize()
         binding.fab.isVisible = binding.navView.isVisible
     }

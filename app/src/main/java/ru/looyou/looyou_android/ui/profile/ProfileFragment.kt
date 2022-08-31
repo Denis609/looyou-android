@@ -11,13 +11,26 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import ru.looyou.domain.looyou.enums.ProfileDetailAttributeTypeEnum
+import ru.looyou.domain.looyou.profile.model.ProfileDetailAttributeTypeDto
+import ru.looyou.domain.looyou.profile.model.ProfileDto
+import ru.looyou.looyou_android.Const
+import ru.looyou.looyou_android.R
 import ru.looyou.looyou_android.databinding.ProfileFragmentBinding
 import ru.looyou.looyou_android.extension.onUnAuthorize
 import ru.looyou.looyou_android.ui.home.PostAdapter
+import ru.looyou.looyou_android.ui.home.PostPhotoPagerAdapter
 import ru.looyou.looyou_android.ui.home.search.PostDto
 import ru.looyou.looyou_android.util.AppBarStateChangeListener
 import ru.looyou.looyou_android.util.ImageLoader
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -40,16 +53,17 @@ class ProfileFragment : Fragment() {
         changedAppBarInit()
 
 
-        binding.imgbAvatarWrap.setOnClickListener {
+        binding.avatar.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileToProfileDetails())
         }
 
-
-
-        ImageLoader.picasso(
-            url = "https://play-lh.googleusercontent.com/CWzqShf8hi-AhV9dUjzsqk2URzdIv8Vk2LmxBzf-Hc8T-oGkLVXe6pMpcXv36ofpvtc",
-            binding.profilePhoto
-        )
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.profile.collect {
+                it?.let {
+                    setProfileData(it)
+                }
+            }
+        }
 
         val items = mutableListOf<PostDto>()
         items.add(
@@ -88,10 +102,75 @@ class ProfileFragment : Fragment() {
         viewModel.getProfile()
 
 
+
+    }
+
+    private fun setProfileData(profile: ProfileDto) {
+        binding.name.text = profile.name
+        binding.nameTitle.text = profile.name
+
+        val localDateTime: LocalDateTime = LocalDateTime.parse(profile.lastOnlineAt)
+        binding.lastOnline.text = localDateTime.toString()
+        binding.lastOnlineTitle.text = localDateTime.toString()
+
+        val listItems = mutableListOf<String>()
+        listItems.add("https://looyou.online/api/looyou/file/${profile.avatar?.photo?.id}")
+        profile.detail?.photos?.map {
+            if (profile.avatar?.photo?.id != it.photo.id) {
+                listItems.add("https://looyou.online/api/looyou/file/${it.photo.id}")
+            }
+        }
+        binding.avatar.adapter = AvatarPagerAdapter(listItems)
+        if (listItems.size <= 1) {
+            binding.tabLayout.isVisible = false
+        } else {
+            TabLayoutMediator(binding.tabLayout, binding.avatar) { tab, position ->
+
+            }.attach()
+        }
+
         ImageLoader.picasso(
-            url = "https://play-lh.googleusercontent.com/CWzqShf8hi-AhV9dUjzsqk2URzdIv8Vk2LmxBzf-Hc8T-oGkLVXe6pMpcXv36ofpvtc",
-            binding.imgbAvatarWrap
+            url = "https://looyou.online/api/looyou/file/${profile.avatar?.photo?.id}?width=100&height=100",
+            binding.profilePhoto
         )
+
+        binding.birthdayTextView.text = getString(R.string.birthday_s, profile.birthday)
+
+        profile.detail?.attributes?.map {
+            when (it.type.id) {
+                ProfileDetailAttributeTypeEnum.Hobby -> {
+                    binding.hobbyTextView.text = getString(R.string.hobby_s, it.value)
+                    binding.hobbyGroup.isVisible = true
+                }
+                ProfileDetailAttributeTypeEnum.Book -> {
+                    binding.booksTextView.text = getString(R.string.books_s, it.value)
+                    binding.booksGroup.isVisible = true
+                }
+                ProfileDetailAttributeTypeEnum.About -> {
+                    binding.aboutMeTextView.text = getString(R.string.about_me_s, it.value)
+                    binding.aboutMeGroup.isVisible = true
+                }
+                ProfileDetailAttributeTypeEnum.Film -> {
+                    binding.filmsTextView.text = getString(R.string.films_s, it.value)
+                    binding.filmsGroup.isVisible = true
+                }
+                ProfileDetailAttributeTypeEnum.Game -> {
+                    binding.gamesTextView.text = getString(R.string.games_s, it.value)
+                    binding.gamesGroup.isVisible = true
+                }
+                ProfileDetailAttributeTypeEnum.Music -> {
+                    binding.musicTextView.text = getString(R.string.music_s, it.value)
+                    binding.musicGroup.isVisible = true
+                }
+                ProfileDetailAttributeTypeEnum.Education -> {
+                    binding.studyTextView.text = getString(R.string.study_s, it.value)
+                    binding.studyGroup.isVisible = true
+                }
+                else -> {
+
+                }
+            }
+        }
     }
 
     private fun changedAppBarInit() {

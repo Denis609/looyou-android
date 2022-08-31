@@ -8,6 +8,7 @@ import io.ktor.http.*
 import ru.looyou.domain.db.sharedprefs.SharedPrefs
 import ru.looyou.domain.looyou.LooYouRepository
 import ru.looyou.domain.looyou.account.model.*
+import ru.looyou.domain.looyou.profile.model.ProfileDto
 
 class LooYouRepositoryImpl(
     private val client: HttpClient
@@ -33,6 +34,6 @@ class LooYouRepositoryImpl(
             setBody(accountRegistrationSendVerifyCodeDto)
         }
 
-    override suspend fun getProfile(): Any =
-        client.get("profile")
+    override suspend fun getProfile(): ProfileDto =
+        client.get("profile").body()
 }

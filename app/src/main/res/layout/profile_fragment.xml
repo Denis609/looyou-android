@@ -22,13 +22,31 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:statusBarScrim="@color/transparent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgb_avatar_wrap"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_profile" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:background="@color/transparent"
+                app:tabBackground="@drawable/indicator_background"
+                app:tabGravity="fill"
+                app:tabIndicator="@drawable/indicator"
+                app:tabIndicatorColor="@color/white"
+                app:tabIndicatorHeight="4dp"
+                app:tabPaddingEnd="4dp"
+                app:tabPaddingStart="4dp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/name_lastOnline_title"
@@ -41,16 +59,18 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/name_title"
-                    style="@style/TitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
                     tools:text="Denis" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/lastOnline_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textColor="@color/white_75"
+                    android:textSize="16sp"
                     tools:text="Недавно был онлайн" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -91,15 +111,17 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/name"
-                        style="@style/TitleStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
                         tools:text="Denis" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/lastOnline"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white_75"
                         android:textSize="12sp"
                         tools:text="Недавно был онлайн" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -221,7 +243,9 @@
                 android:id="@+id/city_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="city_imageView,city_textView,city_barrier" />
+                android:visibility="gone"
+                app:constraint_referenced_ids="city_imageView,city_textView,city_barrier"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/study_imageView"
@@ -256,7 +280,9 @@
                 android:id="@+id/study_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="study_imageView,study_textView,study_barrier" />
+                android:visibility="gone"
+                app:constraint_referenced_ids="study_imageView,study_textView,study_barrier"
+                tools:visibility="visible" />
 
             <View
                 android:id="@+id/aboutMe_line"
@@ -300,7 +326,9 @@
                 android:id="@+id/hobby_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="hobby_imageView,hobby_textView,hobby_barrier" />
+                android:visibility="gone"
+                app:constraint_referenced_ids="hobby_imageView,hobby_textView,hobby_barrier"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/music_imageView"
@@ -335,7 +363,9 @@
                 android:id="@+id/music_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="music_imageView,music_textView,music_barrier" />
+                android:visibility="gone"
+                app:constraint_referenced_ids="music_imageView,music_textView,music_barrier"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/films_imageView"
@@ -370,7 +400,9 @@
                 android:id="@+id/films_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="films_imageView,films_textView,films_barrier" />
+                android:visibility="gone"
+                app:constraint_referenced_ids="films_imageView,films_textView,films_barrier"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/books_imageView"
@@ -405,7 +437,9 @@
                 android:id="@+id/books_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="books_imageView,books_textView,books_barrier" />
+                android:visibility="gone"
+                app:constraint_referenced_ids="books_imageView,books_textView,books_barrier"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/games_imageView"
@@ -440,7 +474,9 @@
                 android:id="@+id/games_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="games_imageView,games_textView,games_barrier" />
+                android:visibility="gone"
+                app:constraint_referenced_ids="games_imageView,games_textView,games_barrier"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/aboutMe_imageView"
@@ -475,7 +511,9 @@
                 android:id="@+id/aboutMe_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="aboutMe_imageView,aboutMe_textView,aboutMe_barrier" />
+                android:visibility="gone"
+                app:constraint_referenced_ids="aboutMe_imageView,aboutMe_textView,aboutMe_barrier"
+                tools:visibility="visible" />
 
             <View
                 android:id="@+id/posts_line"

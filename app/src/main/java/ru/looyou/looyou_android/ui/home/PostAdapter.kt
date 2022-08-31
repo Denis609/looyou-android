@@ -62,9 +62,7 @@ class PostAdapter(private val items: List<PostDto>) : RecyclerView
                 binding.tabLayout.isVisible = false
             } else {
                 TabLayoutMediator(binding.tabLayout, binding.postPhotoViewPager) { tab, position ->
-                    binding.root.resources.getStringArray(R.array.posts_items).also {
-                        tab.text = it[position]
-                    }
+
                 }.attach()
             }
 

@@ -36,6 +36,15 @@
     <string name="games">Игры</string>
     <string name="tell_more_about_yourself">Расскажите больше о себе</string>
 
+    <string name="hobby_s">Хобби: %s</string>
+    <string name="music_s">Музыка: %s</string>
+    <string name="films_s">Фильмы: %s</string>
+    <string name="books_s">Книги: %s</string>
+    <string name="games_s">Игры: %s</string>
+    <string name="about_me_s">О себе: %s</string>
+    <string name="birthday_s">Дата рождения: %s</string>
+    <string name="study_s">Образование: %s</string>
+
     <!--    Bottom menu -->
     <string name="home">Лента</string>
     <string name="profile">Профиль</string>

@@ -2,6 +2,7 @@ package ru.looyou.domain.looyou
 
 import io.ktor.client.statement.*
 import ru.looyou.domain.looyou.account.model.*
+import ru.looyou.domain.looyou.profile.model.ProfileDto
 
 interface LooYouRepository {
     suspend fun createRegistration(accountRegistrationCreateDto: AccountRegistrationCreateDto): AccountRegistrationDto
@@ -12,5 +13,5 @@ interface LooYouRepository {
 
     suspend fun sendVerifyCode(accountRegistrationSendVerifyCodeDto: AccountRegistrationSendVerifyCodeDto): HttpResponse
 
-    suspend fun getProfile(): Any
+    suspend fun getProfile(): ProfileDto
 }
